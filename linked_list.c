@@ -4,7 +4,7 @@
 
 struct list_node *new_node(size_t value) { 
   struct list_node newNode = { value, NULL}; 
-  return *newNode;
+  return &newNode;
 }
 
 void insert_at_head(struct linked_list *list, size_t value) {
