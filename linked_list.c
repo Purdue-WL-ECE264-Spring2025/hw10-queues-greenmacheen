@@ -57,8 +57,8 @@ void free_list(struct linked_list list) {
                                                   //I originally was writing it myself, but while researching to confirm I came across this and couldnt really forget it so I just cited it
    while (list.head != NULL)
     {
-       temp = *list.head;
-       list.head = &temp->next;
+       temp = list.head;
+       list.head = temp->next;
        free(temp);
     }
 }
