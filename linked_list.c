@@ -34,7 +34,7 @@ size_t remove_from_head(struct linked_list *list) {
     
 
   }
-                          }
+                          
 
 size_t remove_from_tail(struct linked_list *list) {
      struct list_node *me = list->head;
@@ -53,13 +53,13 @@ size_t remove_from_tail(struct linked_list *list) {
   }
 
 void free_list(struct linked_list list) {
-  struct list_node* temp;              //Format taken from insumity from StackOverflow - rewritten by me for this assignment
+  struct list_node* temp = list->head;              //Format taken from insumity from StackOverflow - rewritten by me for this assignment
                                        //I originally was writing it myself, but while researching to confirm I came across this and couldnt really forget it so I just cited it
    while (list->head != NULL)
     {
-       tmp = list->head;
-       head = head->next;
-       free(tmp);
+       temp = list->head;
+       list->head = head->next;
+       free(temp);
     }
 }
 
