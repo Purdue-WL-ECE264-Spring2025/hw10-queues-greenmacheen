@@ -58,8 +58,8 @@ void free_list(struct linked_list list) {
    while (list.head != NULL)
     {
        temp = *list.head;
-       list.head = &temp.next;
-       free(*temp);
+       list.head = &temp->next;
+       free(temp);
     }
 }
 
