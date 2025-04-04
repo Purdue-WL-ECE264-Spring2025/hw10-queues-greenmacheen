@@ -3,7 +3,8 @@
 #include "linked_list.h"
 
 void enqueue(struct queue *q, struct game_state state) {
-  insert_at_tail(q.data, (size_t)state);
+  
+  insert_at_tail(q->*data, state);
  
 }
 
