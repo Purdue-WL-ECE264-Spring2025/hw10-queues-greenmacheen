@@ -1,6 +1,7 @@
 #include "queue.h"
 #include "tile_game.h"
 #include "linked_list.h"
+#include <stdlib.h>
 
 
 void enqueue(struct queue *q, struct game_state state) {
