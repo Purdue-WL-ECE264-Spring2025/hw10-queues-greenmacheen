@@ -31,7 +31,7 @@ int number_of_moves(struct game_state start) {
       }
   }
   if(endNow == 1) {
-    return start -> num_steps;
+    return start.num_steps;
   }
   up = number_of_moves(move_up(&start));
   down = number_of_moves(move_down(&start));
