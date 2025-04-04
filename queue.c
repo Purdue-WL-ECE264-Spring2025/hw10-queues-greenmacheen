@@ -16,7 +16,7 @@ struct game_state dequeue(struct queue *q) {
 
 
 int number_of_moves(struct game_state start) { 
-  struct queue q =  (struct queue *)malloc(sizeof(struct queue));
+  struct queue *q =  (struct queue *)malloc(sizeof(struct queue));
   int up, down, right, left;
   uint8_t tilecheck[4][4];
   int endNow = 1;
