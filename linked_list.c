@@ -3,7 +3,8 @@
 #include <stdlib.h>
 
 struct list_node *new_node(size_t value) { 
-  struct list_node newNode = { value, NULL}; 
+  struct list_node newNode = malloc( sizeof( struct list_node ) );
+  newNode->value = value;
   return newNode;
 }
 
