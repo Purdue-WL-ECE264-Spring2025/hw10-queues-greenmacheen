@@ -10,7 +10,7 @@ void enqueue(struct queue *q, struct game_state state) {
 
 struct game_state dequeue(struct queue *q) { 
   
-  return (struct game_state)remove_from_tail(&(q->data)); 
+  return deserialize(remove_from_tail(&(q->data))); 
 }
 
 
