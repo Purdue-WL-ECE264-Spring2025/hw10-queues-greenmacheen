@@ -3,15 +3,13 @@
 #include "linked_list.h"
 
 void enqueue(struct queue *q, struct game_state state) {
-  struct linked_list *data = q -> data;
-  insert_at_tail(data, (size_t)state);
+  insert_at_tail(q->data, (size_t)state);
  
 }
 
 struct game_state dequeue(struct queue *q) { 
-  struct linked_list *data = q -> data;
   
-  return (struct game_state)remove_from_tail(data); 
+  return (struct game_state)remove_from_tail(q->data); 
 }
 
 
