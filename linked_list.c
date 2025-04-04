@@ -3,18 +3,18 @@
 #include <stdlib.h>
 
 struct list_node *new_node(size_t value) { 
-  struct list_node newNode = { value, NULL}; 
-  return &newNode;
+  struct list_node *newNode = { value, NULL}; 
+  return newNode;
 }
 
 void insert_at_head(struct linked_list *list, size_t value) {
-   struct list_node newNode = &new_node(value);
+   struct list_node newNode = new_node(value);
    newNode.next = list.head;
   
 }
 
 void insert_at_tail(struct linked_list *list, size_t value) {
-  struct list_node newNode = &new_node(value);
+  struct list_node newNode = new_node(value);
   for (struct list_node *cur = list.head; cur != NULL; cur = cur->next) {
      struct list_node *me = cur;
     
