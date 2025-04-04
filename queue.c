@@ -25,13 +25,13 @@ int number_of_moves(struct game_state start) {
       tilecheck[i / 4][ i % 4] = i + 1;
   }
   for ( int j = 0; j < 15; j++ ) {
-      if (tilecheck[j/4][j%4] != start->tiles[j/4][j%4]) { 
+      if (tilecheck[j/4][j%4] != start.tiles[j/4][j%4]) { 
         endNow++;
         j = 15;
       }
   }
   if(endNow == 1) {
-    return game_state -> num_steps;
+    return start -> num_steps;
   }
   up = number_of_moves(move_up(&start));
   down = number_of_moves(move_down(&start));
