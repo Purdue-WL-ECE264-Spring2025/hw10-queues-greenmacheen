@@ -18,26 +18,37 @@ struct game_state dequeue(struct queue *q) {
 
 int number_of_moves(struct game_state start) { 
   struct queue *q =  (struct queue *)malloc(sizeof(struct queue));
-  int up, down, right, left;
+  struct game_state up;
+  struct game_state down;
+  struct game_state left;
+  struct game_state right;
   uint8_t tilecheck[4][4];
   int endNow = 1;
-  for ( int i = 0; i < 16; i++ ) {
-      tilecheck[i / 4][ i % 4] = i + 1;
-  }
-  for ( int j = 0; j < 15; j++ ) {
-      if (tilecheck[j/4][j%4] != start.tiles[j/4][j%4]) { 
-        endNow++;
-        j = 15;
-      }
-  }
-  if(endNow == 1) {
-    return start.num_steps;
-  }
-  up = number_of_moves(move_up(&start));
-  down = number_of_moves(move_down(&start));
-  right = number_of_moves(move_right(&start));
-  left = number_of_moves(move_left(&start));
   
-  return up; 
+  while(true){
+    up = dequeue(q) 
+    for (int i = 0; i < 16; i++ ) {
+        tilecheck[i / 4][ i % 4] = i + 1;
+    }
+    for ( int j = 0; j < 15; j++ ) {
+        if (tilecheck[j/4][j%4] != up.tiles[j/4][j%4]) { 
+            endNow++;
+          j = 15;
+        }
+    }
+    if(endNow == 1) {
+      return start.num_steps;
+    }
+    down = up;
+    left = up;
+    right = up;
+    
+    enqueue(q, );
+    
+  
+  }
+ 
+  
+
                                               
                                              }
