@@ -6,7 +6,7 @@
 
 void enqueue(struct queue *q, struct game_state state) {
   
-  insert_at_tail(&(q->data), serialize(state));
+  insert_at_head(&(q->data), serialize(state));
  
 }
 
