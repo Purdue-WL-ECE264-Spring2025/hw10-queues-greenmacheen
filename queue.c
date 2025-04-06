@@ -42,10 +42,15 @@ int number_of_moves(struct game_state start) {
     down = up;
     left = up;
     right = up;
+    move_up(&up);
+    move_down(&down);
+    move_left(&left);
+    move_right(&right);
+    enqueue(q, up);
+    enqueue(q, down);
+    enqueue(q, left);
+    enqueue(q, right);
     
-    enqueue(q, );
-    
-  
   }
  
   
