@@ -50,7 +50,8 @@ int number_of_moves(struct game_state start) {
     enqueue(q, down);
     enqueue(q, left);
     enqueue(q, right);
-    
+    free_list(q->data);
+    free(q);
   }
  
   
