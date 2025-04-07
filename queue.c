@@ -67,11 +67,14 @@ int number_of_moves(struct game_state start) {
      if (step != up.num_steps) {
        enqueue(q, up);
     }
-    
+
     //printf("Up:%d Down:%d Left:%d Right: %d\n", up.num_steps, down.num_steps, left.num_steps, right.num_steps);
     
     
-    
+    free(up);
+    free(down);
+    free(left);
+    free(right);
     
     
   } 
