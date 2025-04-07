@@ -8,14 +8,14 @@
 
 void enqueue(struct queue *q, struct game_state state) {
 
-  insert_at_head(&(q->data), serialize(state));
+  insert_at_tail(&(q->data), serialize(state));
   
  
 }
 
 struct game_state dequeue(struct queue *q) { 
   
-  return deserialize(remove_from_tail(&(q->data))); 
+  return deserialize(remove_from_head(&(q->data))); 
 }
 
 
@@ -29,7 +29,7 @@ int number_of_moves(struct game_state start) {
   uint8_t tilecheck[4][4];
   int endNow = 0;
   int step = 0;
-  q->data = list;
+  q->data = *list;
   enqueue(q, start);
   while(true){
       endNow = 0;
