@@ -24,7 +24,7 @@ int number_of_moves(struct game_state start) {
   struct game_state right;
   uint8_t tilecheck[4][4];
   int endNow = 1;
-  
+  enqueue(q, up);
   while(true){
     up = dequeue(q);
     for (int i = 0; i < 16; i++ ) {
