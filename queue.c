@@ -5,11 +5,11 @@
 #include <string.h>
 #include <time.h>
 
-/*struct list_node *new_node(size_t value) { 
+struct list_node *new_nodes(size_t value) { 
   struct list_node *newNode = (struct list_node*) malloc( sizeof( struct list_node ) );
   newNode->value = value;
   return newNode;
-}*/
+}
 void enqueue(struct queue *q, struct game_state state) {
   insert_at_head(&(q->data), serialize(state));
  
@@ -30,7 +30,7 @@ int number_of_moves(struct game_state start) {
   uint8_t tilecheck[4][4];
   int endNow = 0;
   int step = 0;
-  q->data.head = new_node(serialize(start));
+  q->data.head = new_nodes(serialize(start));
   enqueue(q, start);
   while(true){
       endNow = 0;
