@@ -36,7 +36,7 @@ size_t remove_from_head(struct linked_list *list) {
   }
                           
 
-size_t remove_from_tail(struct linked_list *list) {
+/*size_t remove_from_tail(struct linked_list *list) {
      struct list_node *me = list->head;
      int i = 0;
     struct list_node *tail = list->head;
@@ -50,7 +50,33 @@ size_t remove_from_tail(struct linked_list *list) {
   free(me);
   tail->next = NULL;
   return 0;
-  }
+  }*/
+size_t remove_from_tail(struct linked_list *list) {
+    if (list->head == NULL) {
+        return -1; // Handle empty list
+    }
+
+    if (list->head->next == NULL) { // Single node list
+        size_t removedValue = list->head->value;
+        free(list->head);
+        list->head = NULL;
+        return removedValue;
+    }
+
+    struct list_node *current = list->head;
+    struct list_node *prev = NULL;
+
+    while (current->next != NULL) {
+        prev = current;
+        current = current->next;
+    }
+
+    // 'current' is now the tail node, and 'prev' is the second-to-last node
+    size_t removedValue = current->value;
+    free(current);
+    prev->next = NULL;
+    return removedValue;
+}
 
 void free_list(struct linked_list list) {
   struct list_node *temp = list.head;              //Format taken from insumity from StackOverflow - rewritten by me for this assignment
