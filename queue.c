@@ -37,7 +37,7 @@ int number_of_moves(struct game_state start) {
         }
     }
     if(endNow == 1 || up.num_steps > 20) {
-      free_list(q->data);
+      //free_list(q->data);
       free(q);
       return up.num_steps;
     }
