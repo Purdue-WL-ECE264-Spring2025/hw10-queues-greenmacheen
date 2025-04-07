@@ -1,9 +1,9 @@
-
 #include "queue.h"
 #include "tile_game.h"
 #include "linked_list.h"
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 
 void enqueue(struct queue *q, struct game_state state) {
@@ -13,7 +13,7 @@ void enqueue(struct queue *q, struct game_state state) {
 
 struct game_state dequeue(struct queue *q) { 
   
-  return deserialize(remove_from_head(&(q->data))); 
+  return deserialize(remove_from_tail(&(q->data))); 
 }
 
 
@@ -25,6 +25,7 @@ int number_of_moves(struct game_state start) {
   struct game_state right;
   uint8_t tilecheck[4][4];
   int endNow = 0;
+  int step = 0;
   //q->data.head = new_node(serialize(start));
   enqueue(q, start);
   while(true){
@@ -47,14 +48,31 @@ int number_of_moves(struct game_state start) {
     memcpy(&down, &up, sizeof(struct game_state)) ;
     memcpy(&left, &up, sizeof(struct game_state)) ;
     memcpy(&right, &up, sizeof(struct game_state)) ;
-    move_up(&up);
+    step = up.num_steps;
     move_down(&down);
     move_left(&left);
     move_right(&right);
-    enqueue(q, up);
-    enqueue(q, down);
-    enqueue(q, left);
-    enqueue(q, right);
+    
+    
+    if (right.num_steps != up.num_steps) {
+        enqueue(q, right);
+    }
+    if (left.num_steps != up.num_steps) {
+        enqueue(q, left);
+    }
+    if (down.num_steps != up.num_steps) {
+       enqueue(q, down);
+    }
+    move_up(&up);
+     if (step != up.num_steps) {
+       enqueue(q, up);
+    }
+    
+    //printf("Up:%d Down:%d Left:%d Right: %d\n", up.num_steps, down.num_steps, left.num_steps, right.num_steps);
+    
+    
+    
+    
     
   } 
  
