@@ -81,16 +81,17 @@ size_t remove_from_tail(struct linked_list *list) {
     prev->next = NULL;
     return removedValue;
 }
-
-void free_list(struct linked_list list) {
-  struct list_node *temp = list.head;              //Format taken from insumity from StackOverflow - rewritten by me for this assignment
-                                                  //I originally was writing it myself, but while researching to confirm I came across this and couldnt really forget it so I just cited it
-   while (list.head != NULL)
-    {
-       temp = list.head;
-       list.head = temp->next;
-       free(temp);
+void free_list(struct linked_list *list) {  // Changed to pointer
+    struct list_node *current = list->head;
+    struct list_node *next;
+    
+    while (current != NULL) {
+        next = current->next;  // Save next pointer before freeing
+        free(current);
+        current = next;
     }
+    
+    list->head = NULL;  // Set head to NULL to indicate empty list
 }
 
 // Utility function to help you debugging, do not modify
