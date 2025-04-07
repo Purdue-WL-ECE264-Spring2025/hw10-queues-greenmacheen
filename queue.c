@@ -25,8 +25,6 @@ int number_of_moves(struct game_state start) {
   int endNow = 0;
   q->data.head = NULL;
   enqueue(q, start);
-  dequeue(q);
-  enqueue(q, start);
   while(true){
     up = dequeue(q);
     for (int i = 0; i < 16; i++ ) {
