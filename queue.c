@@ -29,6 +29,7 @@ int number_of_moves(struct game_state start) {
   uint8_t tilecheck[4][4];
   int endNow = 0;
   int step = 0;
+  q->data = list;
   enqueue(q, start);
   while(true){
       endNow = 0;
