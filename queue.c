@@ -5,7 +5,6 @@
 
 
 void enqueue(struct queue *q, struct game_state state) {
-  
   insert_at_head(&(q->data), serialize(state));
  
 }
@@ -23,7 +22,7 @@ int number_of_moves(struct game_state start) {
   struct game_state left;
   struct game_state right;
   uint8_t tilecheck[4][4];
-  int endNow = 1;
+  int endNow = 0;
   q->data.head = NULL;
   enqueue(q, start);
   while(true){
