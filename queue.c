@@ -39,7 +39,7 @@ int number_of_moves(struct game_state start) {
     if(endNow == 1) {
       free_list(q->data);
        free(q);
-      return start.num_steps;
+      return up.num_steps;
     }
     down = up;
     left = up;
