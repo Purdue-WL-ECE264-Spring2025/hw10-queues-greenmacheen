@@ -1,6 +1,5 @@
 #include "queue.h"
 #include "tile_game.h"
-#include "linked_list.h"
 #include "linked_list.c"
 #include <stdlib.h>
 
