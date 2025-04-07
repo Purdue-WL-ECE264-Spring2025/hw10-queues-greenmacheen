@@ -82,7 +82,7 @@ size_t remove_from_tail(struct linked_list *list) {
     return removedValue;
 }
 void free_list(struct linked_list list) {  // Changed to pointer
-    struct list_node *current = list->head;
+    struct list_node *current = list.head;
     struct list_node *next;
     
     while (current != NULL) {
@@ -91,7 +91,7 @@ void free_list(struct linked_list list) {  // Changed to pointer
         current = next;
     }
     
-    list->head = NULL;  // Set head to NULL to indicate empty list
+    list.head = NULL;  // Set head to NULL to indicate empty list
 }
 
 // Utility function to help you debugging, do not modify
