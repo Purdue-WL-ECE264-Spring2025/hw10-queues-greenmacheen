@@ -24,7 +24,7 @@ int number_of_moves(struct game_state start) {
   uint8_t tilecheck[4][4];
   int endNow = 0;
   enqueue(q, start);
-  q->data.head = newNode(serialize(start));
+  q->data.head = new_node(serialize(start));
   while(true){
     up = dequeue(q);
     for (int i = 0; i < 16; i++ ) {
