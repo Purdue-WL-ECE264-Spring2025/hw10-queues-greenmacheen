@@ -22,7 +22,7 @@ struct game_state dequeue(struct queue *q) {
 int number_of_moves(struct game_state start) {
   struct queue *q =  (struct queue *)malloc(sizeof(struct queue));
   struct linked_list *list = (struct linked_list *)malloc(sizeof(struct linked_list));
-  insert_at_tail(list), serialize(start));
+  insert_at_tail(list, serialize(start));
   struct game_state up;
   struct game_state down;
   struct game_state left;
