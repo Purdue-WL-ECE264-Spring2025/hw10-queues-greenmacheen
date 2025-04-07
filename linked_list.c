@@ -26,15 +26,19 @@ void insert_at_tail(struct linked_list *list, size_t value) {
   
 }
 
-size_t remove_from_head(struct linked_list *list) { 
-    struct list_node *cur = list->head; 
-    struct list_node *me = cur -> next;
-    free(cur);
-    list->head = me;
-    return 0;
+size_t remove_from_head(struct linked_list *list) {
+    
+    struct list_node *cur = list->head;
+    size_t value = cur->value;
+    
+    list->head = cur->next;
+    
 
-  }
-                          
+    free(cur);
+    
+   
+    return value;
+}                 
 
 /*size_t remove_from_tail(struct linked_list *list) {
      struct list_node *me = list->head;
