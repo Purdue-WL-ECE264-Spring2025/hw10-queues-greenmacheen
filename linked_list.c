@@ -9,21 +9,52 @@ struct list_node *new_node(size_t value) {
 }
 
 void insert_at_head(struct linked_list *list, size_t value) {
-   struct list_node *newNode = new_node(value);
-   newNode->next = list->head;
-  list->head = newNode;
+    if (list == NULL) {
+        fprintf(stderr, "Error: list is NULL\n");
+        return;
+    }
+
+    struct list_node *newNode = new_node(value);
+    if (newNode == NULL) {
+        fprintf(stderr, "Error: Failed to allocate memory for newNode\n");
+        return;
+    }
+
+    newNode->next = list->head;
+    list->head = newNode;
 }
 
 void insert_at_tail(struct linked_list *list, size_t value) {
-  struct list_node *newNode = new_node(value);
-  struct list_node *me = new_node(value);
-  for (struct list_node *cur = list->head; cur != NULL; cur = cur->next) {
-     me = cur;
-    
-  }
-  me->next = newNode;
-  
-  
+    // Create a new node
+    struct list_node *newNode = new_node(value);
+    if (newNode == NULL) {
+        fprintf(stderr, "Error: Failed to allocate memory for new node\n");
+        return;
+    }
+
+    // Check if the list itself is NULL
+    if (list == NULL) {
+        fprintf(stderr, "Error: The list is NULL\n");
+        free(newNode); // Free the new node to avoid memory leak
+        return;
+    }
+
+    // Handle empty list case
+    if (list->head == NULL) {
+        list->head = newNode; // Set the new node as the head of the list
+        return;
+    }
+
+    // Traverse to the tail of the list
+    struct list_node *cur = list->head;
+    while (cur != NULL && cur->next != NULL) { // Check cur before accessing cur->next
+        cur = cur->next; // Move to the next node
+    }
+
+    // Append the new node to the tail
+    if (cur != NULL) {
+        cur->next = newNode;
+    }
 }
 
 size_t remove_from_head(struct linked_list *list) {
@@ -66,19 +97,24 @@ size_t remove_from_tail(struct linked_list *list) {
         list->head = NULL;
         return removedValue;
     }
-
-    struct list_node *current = list->head;
-    struct list_node *prev = NULL;
-
-    while (current->next != NULL) {
-        prev = current;
-        current = current->next;
-    }
+   int step = 0;
+   struct list_node *me;
+   struct list_node *cur;
+   cur = list->head; 
+   if (cur != NULL) {
+   
+    while (cur->next != NULL)  {
+     me = cur;
+     cur = cur -> next;
+     step++;
+     printf("step: %d\n", step);
+   }
+   }
 
     // 'current' is now the tail node, and 'prev' is the second-to-last node
-    size_t removedValue = current->value;
-    free(current);
-    prev->next = NULL;
+    size_t removedValue = cur->value;
+    free(cur);
+    me->next = NULL;
     return removedValue;
 }
 void free_list(struct linked_list list) {  // Changed to pointer
