@@ -1,19 +1,3 @@
-#include "queue.h"
-#include "tile_game.h"
-#include "linked_list.h"
-#include <stdlib.h>
-
-
-void enqueue(struct queue *q, struct game_state state) {
-  insert_at_head(&(q->data), serialize(state));
- 
-}
-
-struct game_state dequeue(struct queue *q) { 
-  
-  return deserialize(remove_from_head(&(q->data))); 
-}
-
 
 #include "queue.h"
 #include "tile_game.h"
