@@ -24,7 +24,7 @@ int number_of_moves(struct game_state start) {
   struct game_state right;
   uint8_t tilecheck[4][4];
   int endNow = 1;
-  q->data = (struct linked_list *)malloc(sizeof(struct linked_list));
+  q->data = (struct linked_list)malloc(sizeof(struct linked_list));
   enqueue(q, start);
   while(true){
     up = dequeue(q);
