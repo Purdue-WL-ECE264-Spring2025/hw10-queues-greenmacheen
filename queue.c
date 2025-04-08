@@ -34,8 +34,9 @@ int number_of_moves(struct game_state start) {
   q->data = *list;
   while(true){
       endNow = 0;
-    up = dequeue(q);
     prev = up;
+    up = dequeue(q);
+    
     for (int i = 0; i < 16; i++ ) {
         tilecheck[i / 4][ i % 4] = i + 1;
     }
@@ -60,13 +61,13 @@ int number_of_moves(struct game_state start) {
     move_right(&right);
     
     
-    if (right.num_steps != up.num_steps && (serialize(right) != serialize(up))) {
+    if (right.num_steps != up.num_steps && (serialize(right) != serialize(prev))) {
         enqueue(q, right);
     }
-    if (left.num_steps != up.num_steps && (serialize(left) != serialize(up))) {
+    if (left.num_steps != up.num_steps && (serialize(left) != serialize(prev))) {
         enqueue(q, left);
     }
-    if (down.num_steps != up.num_steps && (serialize(down) != serialize(up))) {
+    if (down.num_steps != up.num_steps && (serialize(down) != serialize(prev))) {
        enqueue(q, down);
     }
     move_up(&up);
