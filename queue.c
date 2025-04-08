@@ -27,6 +27,7 @@ int number_of_moves(struct game_state start) {
   struct game_state down;
   struct game_state left;
   struct game_state right;
+  struct game_state prev;
   uint8_t tilecheck[4][4];
   int endNow = 0;
   int step = 1;
@@ -34,6 +35,7 @@ int number_of_moves(struct game_state start) {
   while(true){
       endNow = 0;
     up = dequeue(q);
+    prev = up;
     for (int i = 0; i < 16; i++ ) {
         tilecheck[i / 4][ i % 4] = i + 1;
     }
@@ -43,7 +45,7 @@ int number_of_moves(struct game_state start) {
             endNow++;
         }
     }
-    if(endNow > 14 || up.num_steps > 10) {
+    if(endNow > 14 || up.num_steps > 15) {
       free_list(q->data);
       free(list);
       free(q);
@@ -58,17 +60,17 @@ int number_of_moves(struct game_state start) {
     move_right(&right);
     
     
-    if (right.num_steps != up.num_steps) {
+    if (right.num_steps != up.num_steps && (serialize(right) != serialize(up))) {
         enqueue(q, right);
     }
-    if (left.num_steps != up.num_steps) {
+    if (left.num_steps != up.num_steps && (serialize(left) != serialize(up))) {
         enqueue(q, left);
     }
-    if (down.num_steps != up.num_steps) {
+    if (down.num_steps != up.num_steps && (serialize(down) != serialize(up))) {
        enqueue(q, down);
     }
     move_up(&up);
-     if (step != up.num_steps) {
+     if (step != up.num_steps && (serialize(up) != serialize(prev))) {
        enqueue(q, up);
     }
 
