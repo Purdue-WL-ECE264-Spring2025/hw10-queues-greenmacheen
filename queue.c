@@ -50,7 +50,6 @@ int number_of_moves(struct game_state start) {
       free_list(q->data);
       free(list);
       free(q);
-      free(prev);
       return up.num_steps;
     }
     memcpy(&down, &up, sizeof(struct game_state)) ;
