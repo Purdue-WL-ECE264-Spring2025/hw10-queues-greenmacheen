@@ -39,6 +39,7 @@ int number_of_moves(struct game_state start) {
   q->data = *list;
   while(true){
       endNow = 0;
+    up = start;
     prev = up;
     up = dequeue(q);
     
