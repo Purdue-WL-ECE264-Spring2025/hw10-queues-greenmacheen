@@ -29,7 +29,7 @@ int number_of_moves(struct game_state start) {
   struct game_state right;
   uint8_t tilecheck[4][4];
   int endNow = 0;
-  int step = 0;
+  int step = 1;
   q->data = *list;
   while(true){
       endNow = 0;
