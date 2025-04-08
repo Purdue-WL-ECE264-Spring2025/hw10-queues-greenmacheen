@@ -25,6 +25,11 @@ int number_of_moves(struct game_state start) {
   insert_at_tail(list, serialize(start));
   struct game_state up;
   struct game_state down;
+  uint64_t downn;
+  uint64_t upn;
+  uint64_t rightn;
+  uint64_t leftn;
+  uint64_t prevn;
   struct game_state left;
   struct game_state right;
   struct game_state prev;
@@ -46,7 +51,7 @@ int number_of_moves(struct game_state start) {
             endNow++;
         }
     }
-    if(endNow > 14 || up.num_steps > 12) {
+    if(endNow > 14 || up.num_steps > 10) {
       free_list(q->data);
       free(list);
       free(q);
@@ -56,22 +61,28 @@ int number_of_moves(struct game_state start) {
     memcpy(&left, &up, sizeof(struct game_state)) ;
     memcpy(&right, &up, sizeof(struct game_state)) ;
     step = up.num_steps;
+    
     move_down(&down);
     move_left(&left);
     move_right(&right);
+    downn = serialize(down);
+    prevn = serialize(prev);
+    leftn = serialize(left);
+    rightn = serialize(right);
     
     
-    if (right.num_steps != up.num_steps && (serialize(right) != serialize(prev))) {
+    if (right.num_steps != up.num_steps && (rightn != prevn)) {
         enqueue(q, right);
     }
-    if (left.num_steps != up.num_steps && (serialize(left) != serialize(prev))) {
+    if (left.num_steps != up.num_steps && (leftn != prevn)) {
         enqueue(q, left);
     }
-    if (down.num_steps != up.num_steps && (serialize(down) != serialize(prev))) {
+    if (down.num_steps != up.num_steps && (downn != prevn)) {
        enqueue(q, down);
     }
     move_up(&up);
-     if (step != up.num_steps && (serialize(up) != serialize(prev))) {
+    upn = serialize(up);
+     if (step != up.num_steps && (upn != prevn)) {
        enqueue(q, up);
     }
 
